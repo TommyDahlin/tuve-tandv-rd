@@ -55,7 +55,17 @@ const translations = {
         booking: {
             eyebrow: "Boka tid",
             title: "Boka ditt besök online med Muntra",
-            body: "När Muntra-widgeten laddas kan lediga tider visas direkt här på sidan.",
+            body: "Vår digitala bokning gör det enklare att hitta en tid som passar dig – direkt här på sidan.",
+            liveLabel: "Onlinebokning via Muntra",
+            calendarTitle: "Välj en tid som passar dig",
+            calendarIntro: "Se tillgängliga tider och bekräfta din bokning tryggt i kalendern nedan.",
+            loading: "Vi laddar bokningskalendern nu…",
+            fallback: "Kalendern är tillfälligt inte tillgänglig här, men vi hjälper dig gärna via telefon.",
+            benefits: [
+                "Se lediga tider dygnet runt",
+                "Boka på mobil, surfplatta eller dator",
+                "Få snabb bekräftelse direkt online",
+            ],
             helpTitle: "Behöver du hjälp med bokningen?",
             helpBody:
                 "Om bokningskalendern inte visas just nu går det bra att ringa kliniken så hjälper vi dig direkt.",
@@ -182,7 +192,17 @@ const translations = {
         booking: {
             eyebrow: "Book online",
             title: "Book your visit online with Muntra",
-            body: "When the Muntra widget loads, available appointments can appear directly on this page.",
+            body: "Our digital booking flow makes it easier to find a time that works for you, right here on the page.",
+            liveLabel: "Online booking with Muntra",
+            calendarTitle: "Choose a time that suits you",
+            calendarIntro: "View available slots and confirm your appointment securely in the calendar below.",
+            loading: "We are loading the booking calendar now…",
+            fallback: "The booking calendar is temporarily unavailable here, but you can still call us for quick help.",
+            benefits: [
+                "See available times around the clock",
+                "Book on mobile, tablet or desktop",
+                "Get a quick confirmation online",
+            ],
             helpTitle: "Need help with your booking?",
             helpBody:
                 "If the booking calendar is not visible right now, please call the clinic and we will help you directly.",
@@ -308,7 +328,17 @@ const translations = {
         booking: {
             eyebrow: "Randevu al",
             title: "Muntra ile ziyaretinizi online planlayın",
-            body: "Muntra widget'ı yüklendiğinde müsait randevu saatleri doğrudan bu sayfada görünebilir.",
+            body: "Dijital rezervasyon akışımız size uygun bir zamanı doğrudan bu sayfada bulmanızı kolaylaştırır.",
+            liveLabel: "Muntra ile online rezervasyon",
+            calendarTitle: "Size uygun bir saat seçin",
+            calendarIntro: "Aşağıdaki takvimde uygun saatleri görün ve randevunuzu güvenle onaylayın.",
+            loading: "Rezervasyon takvimi şimdi yükleniyor…",
+            fallback: "Takvim şu anda burada kullanılamıyor, ancak hızlı yardım için bizi yine de arayabilirsiniz.",
+            benefits: [
+                "Günün her saati müsait zamanları görün",
+                "Telefon, tablet veya bilgisayardan rezervasyon yapın",
+                "Online hızlı onay alın",
+            ],
             helpTitle: "Randevu için yardıma mı ihtiyacınız var?",
             helpBody:
                 "Randevu takvimi şu anda görünmüyorsa kliniği arayın, size memnuniyetle yardımcı olalım.",
@@ -434,7 +464,17 @@ const translations = {
         booking: {
             eyebrow: "Dem bistîne",
             title: "Serdana xwe bi Muntra re online tomar bikin",
-            body: "Dema ku widgeta Muntra bar bibe, demên vala dikarin rasterast li vir xuya bibin.",
+            body: "Rêbaza me ya tomarê ya dîjîtal hêsan dike ku hûn demeke ku li gorî we ye rasterast li vir bibînin.",
+            liveLabel: "Tomara online bi Muntra",
+            calendarTitle: "Demeke ku li gorî we ye hilbijêrin",
+            calendarIntro: "Demên vala bibînin û di salnameya li jêr de tomara xwe bi ewle qebûl bikin.",
+            loading: "Salnameya tomarê niha tê barkirin…",
+            fallback: "Salname li vir demekî kurt tune ye, lê hûn dikarin ji bo alîkariya zû telefon bikin.",
+            benefits: [
+                "Di her demê de demên vala bibînin",
+                "Bi mobile, tablet an jî komputerê tomar bikin",
+                "Piştrastkirina zû online bistînin",
+            ],
             helpTitle: "Ji bo rezervasyonê alîkarî hewce ye?",
             helpBody:
                 "Heke salnameya rezervasyonê niha xuya nabe, ji kerema xwe re klînîkê telefon bikin em alîkariya we bikin.",
@@ -560,7 +600,17 @@ const translations = {
         booking: {
             eyebrow: "احجز موعدًا",
             title: "احجز زيارتك عبر الإنترنت باستخدام Muntra",
-            body: "عند تحميل أداة Muntra يمكن عرض المواعيد المتاحة مباشرة هنا في الصفحة.",
+            body: "يسهّل نظام الحجز الرقمي لدينا العثور على موعد مناسب لك مباشرة من هذه الصفحة.",
+            liveLabel: "حجز إلكتروني عبر Muntra",
+            calendarTitle: "اختر الوقت المناسب لك",
+            calendarIntro: "اطّلع على المواعيد المتاحة وأكّد حجزك بأمان من خلال التقويم أدناه.",
+            loading: "جارٍ تحميل تقويم الحجز الآن…",
+            fallback: "تقويم الحجز غير متاح هنا مؤقتًا، لكن يمكنك الاتصال بنا وسنساعدك بسرعة.",
+            benefits: [
+                "اعرض المواعيد المتاحة على مدار الساعة",
+                "احجز من الهاتف أو الجهاز اللوحي أو الكمبيوتر",
+                "احصل على تأكيد سريع عبر الإنترنت",
+            ],
             helpTitle: "هل تحتاج إلى مساعدة في الحجز؟",
             helpBody:
                 "إذا لم يظهر تقويم الحجز الآن، يُرجى الاتصال بالعيادة وسنساعدك مباشرة.",
@@ -686,7 +736,17 @@ const translations = {
         booking: {
             eyebrow: "Rezervuoti laiką",
             title: "Užsisakykite vizitą internetu su Muntra",
-            body: "Kai Muntra valdiklis įkeliamas, laisvi laikai gali būti rodomi tiesiai šiame puslapyje.",
+            body: "Mūsų skaitmeninė registracija leidžia lengviau rasti jums tinkamą laiką tiesiai šiame puslapyje.",
+            liveLabel: "Internetinė registracija su Muntra",
+            calendarTitle: "Pasirinkite jums tinkamą laiką",
+            calendarIntro: "Peržiūrėkite laisvus laikus ir saugiai patvirtinkite vizitą kalendoriuje žemiau.",
+            loading: "Dabar įkeliamas registracijos kalendorius…",
+            fallback: "Kalendorius čia laikinai nepasiekiamas, tačiau galite mums paskambinti ir greitai padėsime.",
+            benefits: [
+                "Matykite laisvus laikus visą parą",
+                "Registruokitės telefonu, planšete ar kompiuteriu",
+                "Greitai gaukite patvirtinimą internetu",
+            ],
             helpTitle: "Reikia pagalbos rezervuojant?",
             helpBody:
                 "Jei rezervacijos kalendorius dabar nerodomas, paskambinkite į kliniką ir mes jums padėsime.",
@@ -764,6 +824,345 @@ const translations = {
     },
 };
 
+const translationEnhancements = {
+    sv: {
+        topbar: {
+            highlights: [
+                "Akuta tider vid behov",
+                "Modern tandvård i Tuve",
+                "Flera språk på kliniken",
+            ],
+            bookButton: "Boka tid",
+        },
+        hero: {
+            quickActions: [
+                { label: "Ring oss", value: baseContent.phone, href: "tel:0707554448" },
+                { label: "Boka online", value: "Snabb återkoppling", href: "#boka-tid" },
+                { label: "Hitta hit", value: "Gunnestorpsvägen 109", href: "#karta" },
+            ],
+            ratingNote: "Trygg tandvård med höga patientomdömen.",
+        },
+        promo: {
+            eyebrow: "Estetisk tandvård",
+            title: "Behandlingar med ett naturligt och fräscht resultat",
+            body:
+                "Vi hjälper dig med allt från kosmetiska förbättringar till mer avancerad estetisk tandvård i en lugn och personlig miljö.",
+            cta: "Upptäck våra behandlingar",
+            imageAlt: "Estetisk tandvård hos Tuve Tandvård",
+        },
+        benefits: {
+            eyebrow: "Därför väljer patienter oss",
+            title: "Det här uppskattar våra patienter mest",
+            items: [
+                {
+                    title: "Personligt bemötande",
+                    description: "Vi tar oss tid, lyssnar och anpassar behandlingen efter dina behov.",
+                },
+                {
+                    title: "Bred kompetens",
+                    description: "Från allmäntandvård till kirurgi, implantat och estetiska behandlingar.",
+                },
+                {
+                    title: "Trygg miljö",
+                    description: "Modern utrustning och tydlig information genom hela ditt besök.",
+                },
+                {
+                    title: "Smidig kontakt",
+                    description: "Boka online eller ring oss direkt för snabb hjälp och rådgivning.",
+                },
+            ],
+        },
+        location: {
+            hoursTitle: "Öppettider",
+            hours: [
+                { label: "Måndag–Fredag", value: "Enligt bokning" },
+                { label: "Akuta tider", value: "Vid behov" },
+                { label: "Kontakt", value: baseContent.phone },
+            ],
+        },
+    },
+    en: {
+        topbar: {
+            highlights: [
+                "Emergency appointments when needed",
+                "Modern dental care in Tuve",
+                "Multilingual support at the clinic",
+            ],
+            bookButton: "Book now",
+        },
+        hero: {
+            quickActions: [
+                { label: "Call us", value: baseContent.phone, href: "tel:0707554448" },
+                { label: "Book online", value: "Fast response", href: "#boka-tid" },
+                { label: "Find us", value: "Gunnestorpsvägen 109", href: "#karta" },
+            ],
+            ratingNote: "Safe dental care with strong patient reviews.",
+        },
+        promo: {
+            eyebrow: "Aesthetic dentistry",
+            title: "Treatments with a natural and confident result",
+            body:
+                "We help you with everything from cosmetic improvements to more advanced aesthetic dentistry in a calm and personal environment.",
+            cta: "Explore our treatments",
+            imageAlt: "Aesthetic dentistry at Tuve Tandvård",
+        },
+        benefits: {
+            eyebrow: "Why patients choose us",
+            title: "What our patients appreciate the most",
+            items: [
+                {
+                    title: "Personal care",
+                    description: "We listen carefully and tailor each visit to your needs.",
+                },
+                {
+                    title: "Wide expertise",
+                    description: "From general dentistry to surgery, implants and aesthetic treatments.",
+                },
+                {
+                    title: "Safe environment",
+                    description: "Modern equipment and clear guidance throughout your visit.",
+                },
+                {
+                    title: "Easy contact",
+                    description: "Book online or call us directly for quick help and advice.",
+                },
+            ],
+        },
+        location: {
+            hoursTitle: "Opening hours",
+            hours: [
+                { label: "Monday–Friday", value: "By appointment" },
+                { label: "Emergency care", value: "When needed" },
+                { label: "Contact", value: baseContent.phone },
+            ],
+        },
+    },
+    tr: {
+        topbar: {
+            highlights: [
+                "Gerektiğinde acil randevu",
+                "Tuve'de modern diş bakımı",
+                "Klinikte çok dilli hizmet",
+            ],
+            bookButton: "Randevu al",
+        },
+        hero: {
+            quickActions: [
+                { label: "Bizi arayın", value: baseContent.phone, href: "tel:0707554448" },
+                { label: "Online randevu", value: "Hızlı dönüş", href: "#boka-tid" },
+                { label: "Bizi bulun", value: "Gunnestorpsvägen 109", href: "#karta" },
+            ],
+            ratingNote: "Yüksek hasta memnuniyetine sahip güvenli diş bakımı.",
+        },
+        promo: {
+            eyebrow: "Estetik diş hekimliği",
+            title: "Doğal ve taze bir görünüm için tedaviler",
+            body:
+                "Sakin ve kişisel bir ortamda kozmetik iyileştirmelerden daha gelişmiş estetik diş tedavilerine kadar yardımcı oluyoruz.",
+            cta: "Tedavilerimizi keşfedin",
+            imageAlt: "Tuve Tandvård estetik diş tedavisi",
+        },
+        benefits: {
+            eyebrow: "Hastalar neden bizi seçiyor",
+            title: "Hastalarımızın en çok takdir ettiği noktalar",
+            items: [
+                {
+                    title: "Kişisel yaklaşım",
+                    description: "Sizi dinler ve tedaviyi ihtiyaçlarınıza göre planlarız.",
+                },
+                {
+                    title: "Geniş uzmanlık",
+                    description: "Genel diş bakımından implant ve estetik tedavilere kadar geniş hizmet.",
+                },
+                {
+                    title: "Güvenli ortam",
+                    description: "Modern ekipman ve net bilgilendirme ile rahat bir deneyim.",
+                },
+                {
+                    title: "Kolay iletişim",
+                    description: "Online randevu alın ya da hızlı destek için bizi arayın.",
+                },
+            ],
+        },
+        location: {
+            hoursTitle: "Çalışma saatleri",
+            hours: [
+                { label: "Pazartesi–Cuma", value: "Randevu ile" },
+                { label: "Acil bakım", value: "Gerektiğinde" },
+                { label: "İletişim", value: baseContent.phone },
+            ],
+        },
+    },
+    ku: {
+        topbar: {
+            highlights: [
+                "Wextên acîl dema pêwîst be",
+                "Lênihêrîna diranan a nûjen li Tuve",
+                "Xizmeta pir-zimanî li klînîkê",
+            ],
+            bookButton: "Dem bistîne",
+        },
+        hero: {
+            quickActions: [
+                { label: "Telefon bikin", value: baseContent.phone, href: "tel:0707554448" },
+                { label: "Tomarkirina online", value: "Bersiva bilez", href: "#boka-tid" },
+                { label: "Me bibînin", value: "Gunnestorpsvägen 109", href: "#karta" },
+            ],
+            ratingNote: "Lênihêrîna ewle ya diranan bi nirxandinên baş ên nexweşan.",
+        },
+        promo: {
+            eyebrow: "Diranpizişkiya estetîk",
+            title: "Tedawiyên bi encamek xwezayî û xweş",
+            body:
+                "Em ji başkirinên kozmetîk heta diranpizişkiya estetîk a pêşketî di derdorê de bi aramî û kesayetî alîkariyê dikin.",
+            cta: "Tedawiyên me bibînin",
+            imageAlt: "Diranpizişkiya estetîk li Tuve Tandvård",
+        },
+        benefits: {
+            eyebrow: "Çima nexweş em hilbijêrin",
+            title: "Tiştên ku nexweşên me herî zêde jê hez dikin",
+            items: [
+                {
+                    title: "Pêşwaziya kesane",
+                    description: "Em guhdarî dikin û planê li gorî hewcedariyên we çêdikin.",
+                },
+                {
+                    title: "Şarezayiya fireh",
+                    description: "Ji lênihêrîna giştî heta implant û tedawiyên estetîk.",
+                },
+                {
+                    title: "Hewşeya ewle",
+                    description: "Amûrên nûjen û agahdariya zelal di hemû serdanê de.",
+                },
+                {
+                    title: "Têkiliya hêsan",
+                    description: "Online tomar bikin an jî ji bo alîkariya bilez telefon bikin.",
+                },
+            ],
+        },
+        location: {
+            hoursTitle: "Demjimêr",
+            hours: [
+                { label: "Duşem–În", value: "Bi tomarê" },
+                { label: "Lênihêrîna acîl", value: "Dema pêwîst be" },
+                { label: "Têkilî", value: baseContent.phone },
+            ],
+        },
+    },
+    ar: {
+        topbar: {
+            highlights: [
+                "مواعيد طارئة عند الحاجة",
+                "رعاية أسنان حديثة في Tuve",
+                "خدمة بعدة لغات في العيادة",
+            ],
+            bookButton: "احجز الآن",
+        },
+        hero: {
+            quickActions: [
+                { label: "اتصل بنا", value: baseContent.phone, href: "tel:0707554448" },
+                { label: "حجز عبر الإنترنت", value: "رد سريع", href: "#boka-tid" },
+                { label: "اعثر علينا", value: "Gunnestorpsvägen 109", href: "#karta" },
+            ],
+            ratingNote: "رعاية أسنان موثوقة مع تقييمات ممتازة من المرضى.",
+        },
+        promo: {
+            eyebrow: "طب الأسنان التجميلي",
+            title: "علاجات بنتيجة طبيعية وواثقة",
+            body:
+                "نساعدك في كل شيء من التحسينات التجميلية إلى العلاجات المتقدمة في بيئة هادئة وشخصية.",
+            cta: "اكتشف علاجاتنا",
+            imageAlt: "علاج تجميلي للأسنان في Tuve Tandvård",
+        },
+        benefits: {
+            eyebrow: "لماذا يختارنا المرضى",
+            title: "أكثر ما يقدّره مرضانا لدينا",
+            items: [
+                {
+                    title: "اهتمام شخصي",
+                    description: "نستمع جيدًا ونكيّف كل علاج حسب احتياجاتك.",
+                },
+                {
+                    title: "خبرة واسعة",
+                    description: "من طب الأسنان العام إلى الزراعة والعلاجات التجميلية.",
+                },
+                {
+                    title: "بيئة آمنة",
+                    description: "أجهزة حديثة ومعلومات واضحة طوال زيارتك.",
+                },
+                {
+                    title: "تواصل سهل",
+                    description: "احجز عبر الإنترنت أو اتصل بنا مباشرة للحصول على مساعدة سريعة.",
+                },
+            ],
+        },
+        location: {
+            hoursTitle: "ساعات العمل",
+            hours: [
+                { label: "الاثنين–الجمعة", value: "حسب الموعد" },
+                { label: "الرعاية الطارئة", value: "عند الحاجة" },
+                { label: "التواصل", value: baseContent.phone },
+            ],
+        },
+    },
+    lt: {
+        topbar: {
+            highlights: [
+                "Skubūs laikai prireikus",
+                "Moderni odontologija Tuve",
+                "Klinikoje kalbame keliomis kalbomis",
+            ],
+            bookButton: "Rezervuoti",
+        },
+        hero: {
+            quickActions: [
+                { label: "Skambinkite", value: baseContent.phone, href: "tel:0707554448" },
+                { label: "Rezervuokite online", value: "Greitas atsakas", href: "#boka-tid" },
+                { label: "Raskite mus", value: "Gunnestorpsvägen 109", href: "#karta" },
+            ],
+            ratingNote: "Patikima odontologija su puikiais pacientų atsiliepimais.",
+        },
+        promo: {
+            eyebrow: "Estetinė odontologija",
+            title: "Procedūros su natūraliu ir gaiviu rezultatu",
+            body:
+                "Padedame tiek su kosmetiniais patobulinimais, tiek su pažangesne estetine odontologija ramioje ir jaukioje aplinkoje.",
+            cta: "Atraskite mūsų procedūras",
+            imageAlt: "Estetinė odontologija Tuve Tandvård klinikoje",
+        },
+        benefits: {
+            eyebrow: "Kodėl pacientai renkasi mus",
+            title: "Ką mūsų pacientai vertina labiausiai",
+            items: [
+                {
+                    title: "Asmeniškas požiūris",
+                    description: "Klausomės jūsų ir pritaikome gydymą pagal poreikius.",
+                },
+                {
+                    title: "Plati kompetencija",
+                    description: "Nuo bendrosios odontologijos iki implantų ir estetikos.",
+                },
+                {
+                    title: "Saugi aplinka",
+                    description: "Moderni įranga ir aiški informacija viso vizito metu.",
+                },
+                {
+                    title: "Patogus kontaktas",
+                    description: "Rezervuokite internetu arba skambinkite greitai pagalbai.",
+                },
+            ],
+        },
+        location: {
+            hoursTitle: "Darbo laikas",
+            hours: [
+                { label: "Pirmadienis–Penktadienis", value: "Pagal rezervaciją" },
+                { label: "Skubi pagalba", value: "Prireikus" },
+                { label: "Kontaktas", value: baseContent.phone },
+            ],
+        },
+    },
+};
+
 export const defaultLocale = "sv";
 export const localeOptions = ["sv", "en", "tr", "ku", "ar", "lt"].map((code) => ({
     code,
@@ -775,5 +1174,29 @@ export function isSupportedLocale(locale) {
 }
 
 export function getTranslation(locale) {
-    return translations[locale] ?? translations[defaultLocale];
+    const selectedLocale = isSupportedLocale(locale) ? locale : defaultLocale;
+    const translation = translations[selectedLocale] ?? translations[defaultLocale];
+    const enhancements =
+        translationEnhancements[selectedLocale] ?? translationEnhancements[defaultLocale];
+
+    return {
+        ...translation,
+        topbar: {
+            ...(enhancements.topbar ?? {}),
+        },
+        hero: {
+            ...translation.hero,
+            ...(enhancements.hero ?? {}),
+        },
+        promo: {
+            ...(enhancements.promo ?? {}),
+        },
+        benefits: {
+            ...(enhancements.benefits ?? {}),
+        },
+        location: {
+            ...translation.location,
+            ...(enhancements.location ?? {}),
+        },
+    };
 }

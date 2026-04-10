@@ -1,9 +1,14 @@
 import { useEffect, useState } from "react";
-import heroImg from "./assets/hero.png";
-import { defaultLocale, getTranslation, isSupportedLocale, localeOptions } from "./i18n";
+import heroImg from "./assets/dentist.jpg";
+import hollywoodImg from "./assets/hollywood.jpg";
+import {
+  defaultLocale,
+  getTranslation,
+  isSupportedLocale,
+  localeOptions,
+} from "./i18n";
 import "./App.css";
 import logo from "./assets/loaaa.png";
-
 
 const GOOGLE_MAPS_API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
 const GOOGLE_PLACE_ID = import.meta.env.VITE_GOOGLE_PLACE_ID;
@@ -17,6 +22,7 @@ const MUNTRA_WIDGET_ATTRIBUTES = {
 const mapsPromiseKey = "__tuveGoogleMapsPromise__";
 const muntraPromiseKey = "__tuveMuntraWidgetPromise__";
 const localeStorageKey = "tuve-preferred-locale";
+const clinicPhoneHref = "tel:0707554448";
 
 const googleReviewsUrl =
   "https://www.google.com/search?client=firefox-b-d&hs=Me0U&sca_esv=a8881eab68290456&cs=1&sxsrf=ANbL-n78EiqbAZ0xwPs_fHSjnQhrjiDagw:1775732008934&q=Tuve+Tandv%C3%A5rd+-+Tandl%C3%A4kare+G%C3%B6teborg+Recensioner&rflfq=1&num=20&stick=H4sIAAAAAAAAAONgkxIxNLMwMTA0NTO2MDU2sjQ3MTczMNjAyPiK0SiktCxVISQxL6Xs8NKiFAVdMDvn8JLsxKJUBffD20pSk_KL0hWCUpNT84oz8_NSixaxkqEJALZc4eCFAAAA&rldimm=16840156385329747600&tbm=lcl&hl=sv-SE&sa=X&ved=2ahUKEwj7z-2czeCTAxWdhP0HHQotErsQ9fQKegQIFRAG&biw=2091&bih=1106&dpr=1.2#lkt=LocalPoiReviews";
@@ -36,7 +42,9 @@ function getInitialLocale() {
     return savedLocale;
   }
 
-  const browserLocale = globalThis.navigator.language?.split("-")[0]?.toLowerCase();
+  const browserLocale = globalThis.navigator.language
+    ?.split("-")[0]
+    ?.toLowerCase();
   return isSupportedLocale(browserLocale) ? browserLocale : defaultLocale;
 }
 
@@ -50,7 +58,9 @@ function loadMuntraWidgetScript(scriptUrl) {
   }
 
   globalThis[muntraPromiseKey] = new Promise((resolve, reject) => {
-    const existingScript = document.querySelector('script[data-muntra-widget="tuve"]');
+    const existingScript = document.querySelector(
+      'script[data-muntra-widget="tuve"]',
+    );
 
     if (existingScript) {
       resolve(true);
@@ -107,9 +117,13 @@ function loadGoogleMapsPlacesApi(apiKey) {
     );
 
     if (existingScript) {
-      existingScript.addEventListener("load", () => resolve(globalThis.google.maps), {
-        once: true,
-      });
+      existingScript.addEventListener(
+        "load",
+        () => resolve(globalThis.google.maps),
+        {
+          once: true,
+        },
+      );
       existingScript.addEventListener(
         "error",
         () => reject(new Error("Could not load Google Maps API.")),
@@ -161,7 +175,9 @@ function GoogleReviewsPanel({ content }) {
 
     loadGoogleMapsPlacesApi(GOOGLE_MAPS_API_KEY)
       .then((maps) => {
-        const service = new maps.places.PlacesService(document.createElement("div"));
+        const service = new maps.places.PlacesService(
+          document.createElement("div"),
+        );
 
         service.getDetails(
           {
@@ -228,14 +244,21 @@ function GoogleReviewsPanel({ content }) {
             >
               <h4>{review.author_name || content.about.reviewUserFallback}</h4>
               <p className="review-meta">
-                {formatStars(review.rating ?? 0)} · {review.relative_time_description || content.about.reviewRecentFallback}
+                {formatStars(review.rating ?? 0)} ·{" "}
+                {review.relative_time_description ||
+                  content.about.reviewRecentFallback}
               </p>
               <p>{review.text || content.about.reviewTextFallback}</p>
             </article>
           ))}
         </div>
 
-        <a className="button button-secondary" href={reviewLink} target="_blank" rel="noreferrer">
+        <a
+          className="button button-secondary"
+          href={reviewLink}
+          target="_blank"
+          rel="noreferrer"
+        >
           {content.about.reviewCta}
         </a>
       </div>
@@ -268,27 +291,83 @@ function GoogleReviewsPanel({ content }) {
 }
 
 function MuntraBookingPanel({ content }) {
+  const [widgetStatus, setWidgetStatus] = useState(
+    MUNTRA_WIDGET_SCRIPT_URL ? "loading" : "fallback",
+  );
+
   useEffect(() => {
+    let ignore = false;
+
     loadMuntraWidgetScript(MUNTRA_WIDGET_SCRIPT_URL)
-      .then(() => {
+      .then((loaded) => {
+        if (ignore) {
+          return;
+        }
+
+        if (!loaded) {
+          setWidgetStatus("fallback");
+          return;
+        }
+
         refreshMuntraWidget();
+        setWidgetStatus("ready");
       })
       .catch(() => {
-        // Keep the fallback call-to-action visible if the widget is unavailable.
+        if (!ignore) {
+          setWidgetStatus("fallback");
+        }
       });
+
+    return () => {
+      ignore = true;
+    };
   }, []);
 
+  const widgetStatusMessage =
+    widgetStatus === "loading"
+      ? content.booking.loading
+      : widgetStatus === "fallback"
+        ? content.booking.fallback
+        : content.booking.calendarIntro;
+
   return (
-    <section id="boka-tid" className="card section-stack">
-      <p className="eyebrow">{content.booking.eyebrow}</p>
-      <h2>{content.booking.title}</h2>
-      <p>{content.booking.body}</p>
+    <section id="boka-tid" className="card booking-card section-stack">
+      <div className="booking-intro">
+        <div className="section-stack">
+          <span className="status-pill">{content.booking.liveLabel}</span>
+          <p className="eyebrow">{content.booking.eyebrow}</p>
+          <h2>{content.booking.title}</h2>
+          <p>{content.booking.body}</p>
+        </div>
+
+        <div className="booking-benefits" aria-label={content.booking.liveLabel}>
+          {content.booking.benefits.map((item, index) => (
+            <article key={item} className="booking-benefit">
+              <span>{`0${index + 1}`}</span>
+              <p>{item}</p>
+            </article>
+          ))}
+        </div>
+      </div>
 
       <div className="muntra-shell">
+        <div className="muntra-shell-header">
+          <strong>{content.booking.calendarTitle}</strong>
+          <p>{content.booking.calendarIntro}</p>
+        </div>
+
         <div
-          className="muntra-widget primary"
-          {...MUNTRA_WIDGET_ATTRIBUTES}
-        />
+          className={`muntra-widget-frame ${widgetStatus !== "ready" ? "is-placeholder" : ""}`.trim()}
+        >
+          <div className="muntra-widget primary" {...MUNTRA_WIDGET_ATTRIBUTES} />
+
+          {widgetStatus !== "ready" ? (
+            <div className="muntra-widget-placeholder" aria-live="polite">
+              <strong>{content.booking.calendarTitle}</strong>
+              <p>{widgetStatusMessage}</p>
+            </div>
+          ) : null}
+        </div>
       </div>
 
       <div className="highlight-box booking-helper">
@@ -296,10 +375,7 @@ function MuntraBookingPanel({ content }) {
           <h3>{content.booking.helpTitle}</h3>
           <p>{content.booking.helpBody}</p>
         </div>
-        <a
-          className="button button-secondary"
-          href={`tel:${content.phone.replaceAll(" ", "")}`}
-        >
+        <a className="button button-secondary" href={clinicPhoneHref}>
           {content.booking.fallbackCta}
         </a>
       </div>
@@ -351,9 +427,19 @@ function App() {
 
   return (
     <div className="site-shell" dir={content.direction}>
+      <div className="top-strip">
+        <div className="top-strip-inner">
+          {content.topbar.highlights.map((item) => (
+            <span key={item} className="top-strip-item">
+              {item}
+            </span>
+          ))}
+        </div>
+      </div>
+
       <header className="topbar">
-        <a className="brand" href="#startsida">
-          <img className="logo" src={logo} alt={content.brand}></img>
+        <a className="brand" href="#startsida" aria-label={content.brand}>
+          <img className="logo" src={logo} alt={content.brand} />
         </a>
 
         <nav className="nav" aria-label={content.ui.navigationLabel}>
@@ -365,6 +451,21 @@ function App() {
         </nav>
 
         <div className="topbar-actions">
+          <a
+            className="button button-secondary button-compact"
+            href="#boka-tid"
+          >
+            {content.topbar.bookButton}
+          </a>
+
+          <a
+            className="button topbar-cta"
+            href={clinicPhoneHref}
+            aria-label={`${content.hero.secondaryCta}: ${content.phone}`}
+          >
+            {content.phone}
+          </a>
+
           <label className="language-switcher">
             <span>{content.ui.languageLabel}</span>
             <select
@@ -380,14 +481,6 @@ function App() {
               ))}
             </select>
           </label>
-
-          <a
-            className="button topbar-cta"
-            href="tel:0707554448"
-            aria-label={`${content.hero.secondaryCta}: ${content.phone}`}
-          >
-            {content.phone}
-          </a>
         </div>
       </header>
 
@@ -404,32 +497,113 @@ function App() {
               <a className="button" href="#om-oss">
                 {content.hero.primaryCta}
               </a>
-              <a className="button button-secondary" href="tel:0707554448">
+              <a className="button button-secondary" href={clinicPhoneHref}>
                 {content.hero.secondaryCta}
               </a>
             </div>
+
+            <div className="hero-quick-grid">
+              {content.hero.quickActions.map((item, index) => (
+                <a key={item.label} className="quick-action" href={item.href}>
+                  <span className="quick-action-index">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <div className="quick-action-text">
+                    <strong>{item.label}</strong>
+                    <span>{item.value}</span>
+                  </div>
+                </a>
+              ))}
+            </div>
           </div>
 
-          <img className="hero-image" src={heroImg} alt={content.hero.imageAlt} />
+          <div className="hero-visual">
+            <img
+              className="hero-image"
+              src={heroImg}
+              alt={content.hero.imageAlt}
+            />
+            <div className="hero-floating-card">
+              <p className="eyebrow small-eyebrow">
+                {content.about.reviewLiveLabel}
+              </p>
+              <strong>4.8 / 5</strong>
+              <p>{content.hero.ratingNote}</p>
+            </div>
+          </div>
         </section>
 
         <MuntraBookingPanel content={content} />
 
-        <section id="om-oss" className="card section-stack">
-          <p className="eyebrow">{content.about.eyebrow}</p>
-          <h2>{content.about.title}</h2>
-          <p>{content.about.body}</p>
-          <GoogleReviewsPanel content={content} />
+        <section className="promo-card">
+          <div className="promo-media">
+            <img src={hollywoodImg} alt={content.promo.imageAlt} />
+          </div>
+          <div className="promo-copy">
+            <p className="eyebrow">{content.promo.eyebrow}</p>
+            <h2>{content.promo.title}</h2>
+            <p>{content.promo.body}</p>
+            <a className="button" href="#tjanster">
+              {content.promo.cta}
+            </a>
+          </div>
         </section>
 
         <section className="card section-stack">
+          <p className="eyebrow">{content.benefits.eyebrow}</p>
+          <h2>{content.benefits.title}</h2>
+          <div className="benefits-grid">
+            {content.benefits.items.map((item, index) => (
+              <article key={item.title} className="benefit-card">
+                <span className="benefit-index">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <h3>{item.title}</h3>
+                <p>{item.description}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section id="om-oss">
+          <article className="card">
+            <p className="eyebrow">{content.about.eyebrow}</p>
+            <h2>{content.about.title}</h2>
+            <p>{content.about.body}</p>
+
+            <div className="highlight-box">
+              <div>
+                <h3>{content.location.hoursTitle}</h3>
+                <div className="hours-list">
+                  {content.location.hours.map((item) => (
+                    <div key={item.label} className="hours-row">
+                      <span>{item.label}</span>
+                      <strong>{item.value}</strong>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <a className="button button-secondary" href="#kontakta-oss">
+                {content.contact.title}
+              </a>
+            </div>
+          </article>
+        </section>
+        <section>
+          <GoogleReviewsPanel content={content} />
+        </section>
+
+        <section id="tjanster" className="card section-stack">
           <p className="eyebrow">{content.services.eyebrow}</p>
           <h2>{content.services.title}</h2>
           <p>{content.services.intro}</p>
 
           <div className="services-grid">
-            {content.services.items.map((service) => (
+            {content.services.items.map((service, index) => (
               <article key={service.title} className="service-card">
+                <span className="service-kicker">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
                 <h3>{service.title}</h3>
                 <p>{service.description}</p>
               </article>
@@ -448,7 +622,7 @@ function App() {
             </ul>
           </article>
 
-          <article className="card section-stack">
+          <article id="karta" className="card section-stack">
             <p className="eyebrow">{content.location.eyebrow}</p>
             <h2>{content.location.title}</h2>
             <p>{content.location.city}</p>
@@ -461,7 +635,10 @@ function App() {
               >
                 {content.location.openMaps}
               </a>
-              <a className="button button-secondary" href={`mailto:${content.email}`}>
+              <a
+                className="button button-secondary"
+                href={`mailto:${content.email}`}
+              >
                 {content.email}
               </a>
             </div>
@@ -482,7 +659,10 @@ function App() {
             <h2>{content.contact.title}</h2>
             <p className="contact-note">{content.contact.note}</p>
 
-            <form className="contact-form" onSubmit={(event) => handleContactSubmit(event, content)}>
+            <form
+              className="contact-form"
+              onSubmit={(event) => handleContactSubmit(event, content)}
+            >
               <label>
                 <span>{content.contact.fields.name}</span>
                 <input name="name" type="text" required />
@@ -498,18 +678,18 @@ function App() {
                 <input name="email" type="email" required />
               </label>
 
-              <label>
+              <label className="full-width">
                 <span>{content.contact.fields.message}</span>
                 <textarea name="message" rows="5" required />
               </label>
 
-              <button className="button" type="submit">
+              <button className="button full-width" type="submit">
                 {content.contact.fields.submit}
               </button>
             </form>
           </article>
 
-          <article className="card section-stack">
+          <article className="card section-stack contact-side">
             <p className="eyebrow">{content.location.visitEyebrow}</p>
             <h2>{content.contact.addressTitle}</h2>
 
@@ -542,7 +722,11 @@ function App() {
                     </li>
                   ))}
                   <li>
-                    <a href={content.contact.socialHref} target="_blank" rel="noreferrer">
+                    <a
+                      href={content.contact.socialHref}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
                       {content.contact.socialLabel}
                     </a>
                   </li>
