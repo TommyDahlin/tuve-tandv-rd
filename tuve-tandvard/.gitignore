@@ -12,6 +12,7 @@ dist
 dist-ssr
 *.local
 *.env
+C:\Users\Tommy\Documents\TuveTandvård\tuve-tandvard\.env
 
 # Editor directories and files
 .vscode/*
